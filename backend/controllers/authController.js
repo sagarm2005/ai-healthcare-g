@@ -12,6 +12,12 @@ const MOBILE_REGEX = /^\d{10}$/;
 // @route   POST /api/auth/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
+    // Check if MongoDB is connected
+    if (mongoose.connection.readyState !== 1) {
+        res.status(503);
+        throw new Error('Database is currently not connected. Please check your MongoDB Atlas connection settings.');
+    }
+
     const { email, password } = req.body;
     const normalizedEmail = email ? email.toLowerCase().trim() : '';
 
@@ -50,6 +56,12 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   POST /api/auth/register/:role
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
+    // Check if MongoDB is connected
+    if (mongoose.connection.readyState !== 1) {
+        res.status(503);
+        throw new Error('Database is currently not connected. Please check your MongoDB Atlas connection settings.');
+    }
+
     const {
         email,
         password,
