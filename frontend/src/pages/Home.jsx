@@ -12,7 +12,7 @@ const Home = () => {
         {
             title: "Expert Medical Professionals",
             description: "Our team of world-class doctors and specialists are dedicated to providing the best patient care.",
-            image: "https://images.unsplash.com/photo-1559839734-2b71f153678f?auto=format&fit=crop&w=500&q=60",
+            image: "https://tse1.mm.bing.net/th/id/OIP.vMCMUtCaau6z7qnDHaaR8QHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
         },
         {
             title: "Modern Infrastructure",
