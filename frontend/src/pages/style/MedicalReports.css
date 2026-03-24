@@ -1,0 +1,154 @@
+.medical-reports-container {
+    padding: 2rem;
+}
+
+.report-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+.report-modal-content {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.report-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.report-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #1e293b;
+}
+
+.close-modal-btn {
+    background: #f1f5f9;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #64748b;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.close-modal-btn:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.report-view-container {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.report-image {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.report-pdf-viewer {
+    width: 100%;
+    height: 70vh;
+    border: none;
+}
+
+.no-preview {
+    padding: 3rem;
+    text-align: center;
+    color: #64748b;
+}
+
+.download-options {
+    position: relative;
+    display: inline-block;
+}
+
+.download-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10;
+    min-width: 120px;
+    display: none;
+    flex-direction: column;
+}
+
+.download-options:hover .download-dropdown {
+    display: flex;
+}
+
+.download-dropdown-item {
+    padding: 8px 12px;
+    text-align: left;
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #334155;
+    transition: background 0.2s;
+}
+
+.download-dropdown-item:hover {
+    background: #f1f5f9;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.view-btn { background: #4f46e5; color: white; }
+.view-btn:hover { background: #4338ca; }
+
+.download-btn { background: #10b981; color: white; }
+.download-btn:hover { background: #059669; }
+
+.delete-btn { background: #ef4444; color: white; }
+.delete-btn:hover { background: #dc2626; }

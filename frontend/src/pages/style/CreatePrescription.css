@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Dancing+Script:wght@600&display=swap');
+
+.create-prescription-page {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 60px;
+    background-color: #fffefb; /* Slightly off-white paper color */
+    border-radius: 2px;
+    box-shadow: 
+        0 0 1px rgba(0,0,0,0.2),
+        5px 5px 15px rgba(0,0,0,0.1);
+    font-family: 'Crimson Text', serif;
+    position: relative;
+    color: #2c3e50;
+    border: 1px solid #e0e0e0;
+}
+
+/* Watermark effect */
+.create-prescription-page::before {
+    content: "MEDICAL";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 8rem;
+    color: rgba(0, 0, 0, 0.02);
+    pointer-events: none;
+    z-index: 0;
+    font-weight: 900;
+}
+
+.prescription-header-container {
+    z-index: 1;
+    position: relative;
+}
+
+.hospital-branding {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px double #2c3e50;
+    padding-bottom: 15px;
+}
+
+.hospital-name {
+    margin: 0;
+    color: #1a365d;
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hospital-address {
+    margin: 2px 0;
+    color: #4a5568;
+    font-size: 1.1rem;
+}
+
+.info-columns-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 60px;
+}
+
+.info-column {
+    flex: 1;
+}
+
+.info-column h2 {
+    font-size: 1rem;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.info-column p {
+    margin: 6px 0;
+    font-size: 1.1rem;
+}
+
+.info-column p strong {
+    color: #2d3748;
+    width: 80px;
+    display: inline-block;
+}
+
+.prescription-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: #1a365d;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin: 40px 0;
+    font-weight: 700;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 10px 0;
+}
+
+/* Form Sections */
+.medications-section, .doctor-notes-section {
+    position: relative;
+    z-index: 1;
+}
+
+.medication-item {
+    background: transparent;
+    border-bottom: 1px dashed #cbd5e0;
+    padding: 20px 0;
+    margin-bottom: 10px;
+}
+
+.medication-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: #718096;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.form-group input, .form-group textarea {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #e2e8f0;
+    padding: 8px;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.form-group input:focus {
+    outline: none;
+    background: #fff;
+    border-color: #3182ce;
+}
+
+/* Handwritten Style for Medication text */
+.medication-item input {
+    color: #000080; /* Blue ink color */
+}
+
+.special-instructions-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.special-instructions-section h2 {
+    font-size: 1.1rem;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.special-instructions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.instruction-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #4a5568;
+    transition: all 0.2s;
+    user-select: none;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.instruction-chip:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+}
+
+.instruction-chip.active {
+    background: #ebf8ff;
+    border-color: #4299e1;
+    color: #2b6cb0;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(66, 153, 225, 0.1);
+}
+
+.instruction-chip input {
+    display: none;
+}
+
+.doctor-notes-section {
+    margin-top: 30px;
+}
+
+.doctor-notes-section h2 {
+    font-size: 1.1rem;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.signature-section {
+    margin-top: 60px;
+    display: flex;
+    justify-content: flex-end;
+    text-align: center;
+}
+
+.signature-container {
+    width: 250px;
+}
+
+.signature-line {
+    border-top: 1px solid #2c3e50;
+    margin-bottom: 5px;
+}
+
+.signature-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #000080;
+    margin-bottom: -10px;
+}
+
+.signature-date {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.btn {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: #2d3748;
+    color: white;
+    flex: 1;
+    font-weight: 600;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.btn-cancel-doc {
+    background: #f7fafc;
+    color: #4a5568;
+    border: 1px solid #e2e8f0 !important;
+    width: 30%;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-cancel-doc:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0 !important;
+    color: #2d3748;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.add-medication-btn {
+    background: #fff !important;
+    color: #3182ce !important;
+    border: 2px dashed #cbd5e0 !important;
+    width: 100%;
+    padding: 15px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease !important;
+}
+
+.add-medication-btn:hover {
+    background: #ebf8ff !important;
+    border-color: #3182ce !important;
+    color: #2c5282 !important;
+    transform: scale(1.01);
+}
+
+.btn-secondary { background: #edf2f7; color: #4a5568; margin-top: 10px; }
+.btn-danger { background: #fff5f5; color: #c53030; }
+
+@media print {
+    .btn, .add-medication-btn { display: none; }
+    .create-prescription-page { box-shadow: none; border: none; margin: 0; padding: 20px; }
+}

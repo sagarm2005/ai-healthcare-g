@@ -1,0 +1,302 @@
+.appointments-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.appointment-count {
+    background-color: #4f46e5;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.doctor-dashboard h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    border-left: 5px solid #4f46e5;
+    padding-left: 1rem;
+}
+
+.dashboard-cards-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.appointments-section, .recent-patients-section, .medical-reports-section, .prescriptions-section, .notifications-panel, .chat-section {
+    margin-top: 2rem;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* For responsive tables */
+}
+
+.appointments-section h2, .recent-patients-section h2, .medical-reports-section h2, .prescriptions-section h2, .notifications-panel h2, .chat-section h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+.appointments-section table, .recent-patients-section table, .medical-reports-section table, .prescriptions-section table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.appointments-section th, .appointments-section td, .recent-patients-section th, .recent-patients-section td, .medical-reports-section th, .medical-reports-section td, .prescriptions-section th, .prescriptions-section td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.appointments-section th, .recent-patients-section th, .medical-reports-section th, .prescriptions-section th {
+    background-color: #f8f9fa;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.appointments-section tr:hover, .recent-patients-section tr:hover, .medical-reports-section tr:hover, .prescriptions-section tr:hover {
+    background-color: #fcfcfc;
+}
+
+/* Status Styles */
+.status-pending {
+    color: #f39c12;
+    background: #fdf5e6;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.status-confirmed {
+    color: #27ae60;
+    background: #eafaf1;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.status-cancelled {
+    color: #e74c3c;
+    background: #fdedec;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.status-completed {
+    color: #3498db;
+    background: #ebf5fb;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* Action Buttons */
+.actions-cell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.actions-cell button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+    background-color: #f0f0f0;
+    color: #444;
+}
+
+.actions-cell button:hover:not(:disabled) {
+    background-color: #e0e0e0;
+}
+
+.actions-cell button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.actions-cell button:nth-child(1) { background-color: #27ae60; color: white; } /* Confirm */
+.actions-cell button:nth-child(1):hover:not(:disabled) { background-color: #219150; }
+
+.actions-cell button:nth-child(2) { background-color: #f39c12; color: white; } /* Reschedule */
+.actions-cell button:nth-child(2):hover:not(:disabled) { background-color: #d68910; }
+
+.actions-cell button:nth-child(3) { background-color: #e74c3c; color: white; } /* Cancel */
+.actions-cell button:nth-child(3):hover:not(:disabled) { background-color: #c0392b; }
+
+.actions-cell button:nth-child(4), 
+.actions-cell button:nth-child(5) { background-color: #3498db; color: white; } /* View Patient, Add Prescription */
+.actions-cell button:nth-child(4):hover:not(:disabled),
+.actions-cell button:nth-child(5):hover:not(:disabled) { background-color: #2980b9; }
+
+.actions-cell button:nth-child(6) { background-color: #2c3e50; color: white; } /* Add Notes */
+.actions-cell button:nth-child(6):hover:not(:disabled) { background-color: #1a252f; }
+
+.actions-cell button:last-child { background-color: #8e44ad; color: white; } /* Complete */
+.actions-cell button:last-child:hover:not(:disabled) { background-color: #7d3c98; }
+
+
+.recent-patients-section button, .medical-reports-section button, .prescriptions-section button, .notifications-panel button, .chat-section button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.recent-patients-section button:hover, .medical-reports-section button:hover, .prescriptions-section button:hover, .notifications-panel button:hover, .chat-section button:hover {
+    background-color: #45a049;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.appointments-section td:first-child {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #666;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.appointments-section td:nth-child(2) {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.appointments-section td:nth-child(4) {
+    font-weight: 500;
+    color: #34495e;
+    background-color: #f0f4f8;
+    border-radius: 4px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin: 8px 15px; /* Added some margin for the background color padding */
+}
+
+.appointments-section td:last-child {
+    min-width: 200px;
+}
+
+
+.medical-reports-section td button, .prescriptions-section td button {
+    margin-right: 5px;
+}
+
+.prescriptions-section > button {
+    margin-bottom: 1rem;
+}
+
+.notifications-panel {
+    border: 1px solid #ddd;
+    padding: 1rem;
+}
+
+.notifications-panel ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.notifications-panel li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.chat-section {
+    display: flex;
+    gap: 1rem;
+}
+
+.chat-list {
+    width: 30%;
+    border-right: 1px solid #ddd;
+}
+
+.chat-interface {
+    width: 70%;
+}
+
+.message-input {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.message-input input {
+    flex-grow: 1;
+    padding: 0.5rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+.medical-record-item, .lab-report-item, .prescription-item, .document-item, .appointment-item {
+    border: 1px solid #eee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.medical-record-item p, .lab-report-item p, .prescription-item p, .document-item p, .appointment-item p {
+    margin: 0.3rem 0;
+}

@@ -1,0 +1,28 @@
+.dashboard-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem; /* rounded equivalent */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Consistent shadow */
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: 1px solid #e2e8f0; /* Subtle border */
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-card-title {
+    font-size: 1.125rem; /* text-lg equivalent */
+    font-weight: 600; /* font-semibold */
+    color: #64748b; /* Consistent text color */
+    margin-bottom: 0.75rem;
+}
+
+.dashboard-card-value {
+    font-size: 2.5rem; /* text-4xl equivalent */
+    font-weight: 700; /* font-bold */
+    color: #4f46e5; /* indigo-600 - consistent with project theme */
+    line-height: 1.2;
+}

@@ -1,0 +1,211 @@
+.upload-report-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 20px 32px;
+    color: #0f172a;
+}
+
+.upload-report-header h1 {
+    font-size: 2rem;
+    margin: 0 0 14px;
+}
+
+.upload-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+    padding: 18px;
+    margin-bottom: 16px;
+}
+
+.upload-card h2 {
+    margin: 0 0 14px;
+    font-size: 1.2rem;
+    color: #1e293b;
+}
+
+.patient-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.patient-grid span {
+    font-weight: 600;
+}
+
+.field-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.field-group label {
+    font-weight: 600;
+    color: #334155;
+}
+
+.field-group input,
+.field-group select,
+.field-group textarea {
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field-group input:focus,
+.field-group select:focus,
+.field-group textarea:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.13);
+}
+
+.drop-zone {
+    border: 2px dashed #a5b4fc;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    background: #eef2ff;
+}
+
+.drop-zone.drag-active {
+    background: #e0e7ff;
+    border-color: #4f46e5;
+}
+
+.drop-zone p {
+    margin: 6px 0;
+}
+
+.supported-formats {
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+.upload-file-button {
+    display: inline-block;
+    margin-top: 10px;
+    background: #4f46e5;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.drop-zone input[type='file'] {
+    display: none;
+}
+
+.file-preview-wrap {
+    margin-top: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px;
+    background: #f8fafc;
+}
+
+.file-meta p {
+    margin: 4px 0;
+}
+
+.image-preview {
+    margin-top: 10px;
+    max-width: 240px;
+    max-height: 180px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+.remove-file-button {
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: #fee2e2;
+    color: #b91c1c;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.primary-btn,
+.secondary-btn,
+.ghost-btn,
+.link-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+.secondary-btn {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.ghost-btn {
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+.success-card h2 {
+    color: #166534;
+}
+
+@media (max-width: 768px) {
+    .upload-report-page {
+        padding: 16px 12px 24px;
+    }
+
+    .field-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-row {
+        flex-direction: column;
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .ghost-btn,
+    .link-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

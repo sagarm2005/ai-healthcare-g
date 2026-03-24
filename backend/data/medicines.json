@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Paracetamol",
+    "uses": "Used for relieving mild to moderate pain, such as headache, toothache, or muscle aches, and reducing fever.",
+    "side_effects": "Rarely, allergic reactions such as skin rash or swelling. Long-term use may affect liver function.",
+    "how_to_use": "Take with water after meals. Do not exceed 4g (8 tablets of 500mg) in 24 hours.",
+    "safety_advice": "Avoid alcohol while taking this medicine. Consult a doctor if symptoms persist for more than 3 days."
+  },
+  {
+    "name": "Amoxicillin",
+    "uses": "An antibiotic used to treat bacterial infections like pneumonia, bronchitis, and infections of the ears, nose, throat, urinary tract, and skin.",
+    "side_effects": "Nausea, vomiting, diarrhea, or a skin rash.",
+    "how_to_use": "Usually taken every 8 or 12 hours with or without food. Complete the full course as prescribed.",
+    "safety_advice": "Do not use if allergic to penicillin. Inform your doctor about your kidney history."
+  },
+  {
+    "name": "Cetirizine",
+    "uses": "An antihistamine used to relieve allergy symptoms and common cold symptoms like watery eyes, runny nose, and sneezing.",
+    "side_effects": "Drowsiness, dry mouth, or tiredness.",
+    "how_to_use": "Can be taken with or without food, usually once daily.",
+    "safety_advice": "Be cautious while driving or operating machinery as it may cause drowsiness. Avoid alcohol."
+  },
+  {
+    "name": "Vicks Action 500",
+    "uses": "Relief from common cold symptoms, nasal congestion, headache, and sore throat.",
+    "side_effects": "Dizziness, nervousness, or sleeplessness.",
+    "how_to_use": "Take one tablet every 4-6 hours. Do not exceed 4 tablets in 24 hours.",
+    "safety_advice": "Do not take with other products containing paracetamol."
+  },
+  {
+    "name": "Ibuprofen",
+    "uses": "Used to relieve pain from various conditions such as headache, dental pain, menstrual cramps, muscle aches, or arthritis. It is also used to reduce fever.",
+    "side_effects": "Stomach upset, nausea, vomiting, headache, diarrhea, constipation, dizziness, or drowsiness.",
+    "how_to_use": "Take with food or milk to prevent stomach upset. Usually taken every 4 to 6 hours.",
+    "safety_advice": "Consult a doctor if you have a history of stomach ulcers or kidney disease. Do not take with other NSAIDs."
+  },
+  {
+    "name": "Loperamide",
+    "uses": "Used to treat sudden diarrhea (including traveler's diarrhea). It works by slowing down the movement of the gut.",
+    "side_effects": "Dizziness, drowsiness, tiredness, or constipation.",
+    "how_to_use": "Usually taken after each loose bowel movement. Do not exceed the maximum dose recommended.",
+    "safety_advice": "Drink plenty of fluids to prevent dehydration. Not for use in children under 2 years old."
+  },
+  {
+    "name": "Omeprazole",
+    "uses": "Used to treat certain stomach and esophagus problems (such as acid reflux, ulcers). It works by decreasing the amount of acid your stomach makes.",
+    "side_effects": "Headache or abdominal pain. Long-term use may lead to vitamin B-12 deficiency.",
+    "how_to_use": "Usually taken once daily, at least 30-60 minutes before a meal.",
+    "safety_advice": "Inform your doctor if you have liver disease or lupus."
+  },
+  {
+    "name": "Dextromethorphan",
+    "uses": "A cough suppressant used to temporarily relieve a cough without phlegm (dry cough) caused by air passages irritation (e.g., common cold, flu).",
+    "side_effects": "Dizziness, lightheadedness, drowsiness, nervousness, restlessness, nausea, or stomach pain.",
+    "how_to_use": "Take as directed on the label or by your doctor. Usually every 4 to 12 hours.",
+    "safety_advice": "Do not use if you are taking or have taken an MAO inhibitor in the last 14 days."
+  },
+  {
+    "name": "Guaifenesin",
+    "uses": "An expectorant used to help clear mucus or phlegm from the chest due to colds, flu, or hay fever.",
+    "side_effects": "Nausea or vomiting. Stomach pain or dizziness.",
+    "how_to_use": "Take with a full glass of water to help thin the mucus.",
+    "safety_advice": "Consult a doctor if cough lasts more than 7 days or occurs with fever or rash."
+  },
+  {
+    "name": "Ranitidine",
+    "uses": "Used to treat and prevent ulcers in the stomach and intestines. It also treats conditions in which the stomach produces too much acid, such as Zollinger-Ellison syndrome.",
+    "side_effects": "Headache, constipation, diarrhea, or nausea.",
+    "how_to_use": "Usually taken once or twice daily, with or without food.",
+    "safety_advice": "Consult a doctor if symptoms do not improve after 2 weeks of use."
+  }
+]

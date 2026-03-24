@@ -1,0 +1,239 @@
+.my-patients-container {
+    padding: 2rem;
+}
+
+.my-patients-container h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    border-left: 5px solid #4f46e5;
+    padding-left: 1rem;
+}
+
+.patients-table-responsive {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.patients-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.patients-table th,
+.patients-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.patients-table th {
+    background-color: #f8f9fa;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.patients-table tbody tr:hover {
+    background-color: #fcfcfc;
+}
+
+.patients-table td:first-child {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.patients-table td:nth-child(2) {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.actions-cell button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    color: white;
+}
+
+.actions-cell button:nth-child(1) { background-color: #3498db; } /* View */
+.actions-cell button:nth-child(1):hover { background-color: #2980b9; }
+
+.actions-cell button:nth-child(2) { background-color: #f39c12; } /* Edit */
+.actions-cell button:nth-child(2):hover { background-color: #d68910; }
+
+.actions-cell button:nth-child(3) { background-color: #27ae60; } /* Prescribe */
+.actions-cell button:nth-child(3):hover { background-color: #219150; }
+
+.actions-cell button:nth-child(4) { background-color: #8e44ad; } /* Message */
+.actions-cell button:nth-child(4):hover { background-color: #7d3c98; }
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.modal-content button {
+    margin-top: 15px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #6c757d;
+    color: white;
+    float: right;
+}
+
+.modal-content button:hover {
+    background-color: #5a6268;
+}
+
+.modal-content p {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.modal-content p strong {
+    color: #555;
+}
+
+/* Message Modal Styles */
+.message-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+    backdrop-filter: blur(2px);
+}
+
+.message-modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 500px;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.message-modal-content textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+}
+
+.message-modal-content textarea:focus {
+    outline: none;
+    border-color: #4f46e5;
+    ring: 2px solid #4f46e5;
+}
+
+.message-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.message-modal-actions button {
+    padding: 0.625rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.message-modal-actions .cancel-btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+
+.message-modal-actions .cancel-btn:hover {
+    background-color: #e2e8f0;
+}
+
+.message-modal-actions .send-btn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+}
+
+.message-modal-actions .send-btn:hover {
+    background-color: #4338ca;
+}
+
+.message-modal-actions .send-btn:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+}

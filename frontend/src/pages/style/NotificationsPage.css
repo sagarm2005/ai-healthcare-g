@@ -1,0 +1,294 @@
+.notifications-page {
+    padding: 0;
+    background-color: #f0f4f8; /* Modern light medical blue */
+    height: calc(100vh - 60px); /* Adjust based on navbar height */
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications-page h1 {
+    color: #fff;
+    margin: 0;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    background-color: #4f46e5; /* Indigo-600 to match Navbar */
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.notification-item {
+    background-color: #fff;
+    padding: 8px 12px;
+    border-radius: 7.5px;
+    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+    display: flex;
+    flex-direction: column;
+    max-width: 65%;
+    position: relative;
+    border-left: none;
+    transition: none;
+}
+
+/* General Notification (not a message) */
+.notification-item:not(.message-sent):not(.message-received) {
+    align-self: center;
+    background-color: #e0e7ff; /* Indigo-100 */
+    border-radius: 7.5px;
+    margin: 10px 0;
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+}
+
+.notification-item.message-sent {
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%); /* Indigo gradient for sent messages */
+    align-self: flex-end;
+    margin-left: auto; /* Force to right */
+    border-top-right-radius: 0;
+    color: white;
+    max-width: 60%;
+}
+
+.notification-item.message-sent .notification-message {
+    color: white;
+}
+
+.notification-item.message-sent .notification-timestamp {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.notification-item.message-sent .sender-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.notification-item.message-received {
+    background-color: #ffffff;
+    align-self: flex-start;
+    border-top-left-radius: 0;
+    max-width: 60%;
+    border-left: 3px solid #4f46e5;
+}
+
+.notification-item.message-received .receiver-label {
+    color: #4f46e5;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Small tails for bubbles */
+.notification-item.message-sent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 15px;
+    height: 15px;
+    background: linear-gradient(135deg, #4338ca 50%, transparent 50%);
+}
+
+.notification-item.message-received::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 15px;
+    height: 15px;
+    background: linear-gradient(225deg, #ffffff 50%, transparent 50%);
+}
+
+.notification-content {
+    margin-right: 0;
+    width: 100%;
+   
+}
+
+.notification-type {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 2px;
+    color: #4338ca; /* Indigo-700 */
+    text-transform: uppercase;
+}
+
+.sender-name {
+    font-size: 0.85rem;
+    color: #4338ca; /* Indigo-700 */
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.notification-message {
+    font-size: 0.95rem;
+    color: #303030;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.notification-timestamp {
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.45);
+    margin-top: 4px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.notification-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    justify-content: flex-end;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+}
+
+.notification-item:hover .notification-actions {
+    opacity: 1;
+}
+
+.action-button {
+    background: none;
+    color: #4f46e5;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 0.75rem;
+    text-decoration: underline;
+}
+
+.action-button:hover {
+    color: #4338ca;
+    background: none;
+}
+
+.action-button.mark-read { color: #3b82f6; }
+.action-button.delete-notif { 
+    background-color: #ef4444; /* Solid Red */
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.action-button.delete-notif:hover { 
+    background-color: #dc2626; /* Darker Red on hover */
+    color: white;
+}
+
+/* Message Input Section */
+.message-section {
+    background-color: #f8fafc;
+    padding: 10px 15px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.message-section h2 {
+    display: none;
+}
+
+.message-form {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.form-group {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-group textarea {
+    min-height: 40px !important;
+    height: 40px;
+    padding: 10px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    resize: none;
+    background-color: #fff;
+}
+
+.form-group select {
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    font-size: 0.85rem;
+    background-color: #fff;
+}
+
+.send-button {
+    background-color: #4f46e5;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 0;
+}
+
+.send-button::after {
+    content: "➤";
+    font-size: 1.2rem;
+}
+
+.send-button:hover {
+    background-color: #4338ca;
+}
+
+.send-button:disabled {
+    background-color: #94a3b8;
+}
+
+@media (max-width: 768px) {
+    .notification-item {
+        max-width: 85%;
+    }
+    
+    .message-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .send-button {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        font-size: 1rem;
+        padding: 10px;
+    }
+    
+    .send-button::after {
+        display: none;
+    }
+    
+    .send-button {
+        font-size: 1rem;
+    }
+}
+
+.no-notifications {
+    text-align: center;
+    color: #64748b;
+    margin-top: 50px;
+}

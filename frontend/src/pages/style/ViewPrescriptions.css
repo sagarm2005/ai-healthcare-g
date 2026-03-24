@@ -1,0 +1,243 @@
+.view-prescriptions-page {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 60px); /* Adjust based on navbar height */
+}
+
+.view-prescriptions-page h1 {
+    color: #343a40;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.prescriptions-header {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-bar,
+.filter-date,
+.filter-select {
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 150px;
+}
+
+.search-bar {
+    flex-grow: 2;
+}
+
+.summary-section {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: #495057;
+    font-size: 0.95rem;
+}
+
+.summary-section p strong {
+    color: #007bff;
+}
+
+.prescriptions-table-container {
+    overflow-x: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.prescriptions-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px; /* Ensure table is wide enough for content */
+}
+
+.prescriptions-table thead th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.prescriptions-table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dee2e6;
+    color: #343a40;
+    font-size: 0.9rem;
+}
+
+.prescriptions-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.actions-column {
+    white-space: nowrap; /* Prevent buttons from wrapping */
+}
+
+.action-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+
+.action-button.view { background-color: #28a745; }
+.action-button.view:hover { background-color: #218838; }
+.action-button.edit { background-color: #007bff; }
+.action-button.edit:hover { background-color: #0056b3; }
+.action-button.download { background-color: #17a2b8; }
+.action-button.download:hover { background-color: #138496; }
+.action-button.print { background-color: #6c757d; }
+.action-button.print:hover { background-color: #5a6268; }
+.action-button.share { background-color: #ffc107; color: #343a40;}
+.action-button.share:hover { background-color: #e0a800; }
+
+/* Prescription Details Modal */
+.prescription-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #007bff;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.modal-content h3 {
+    color: #343a40;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.modal-content p strong {
+    color: #343a40;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.medicines-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.medicines-table th,
+.medicines-table td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.medicines-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.extra-features {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.extra-features .action-button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+}
+
+.action-button.download-pdf { background-color: #dc3545; }
+.action-button.download-pdf:hover { background-color: #c82333; }
+.action-button.email-pres { background-color: #007bff; }
+.action-button.email-pres:hover { background-color: #0056b3; }
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .prescriptions-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-bar,
+    .filter-date,
+    .filter-select {
+        width: 100%;
+        flex-grow: 1;
+    }
+
+    .summary-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .prescriptions-table thead th,
+    .prescriptions-table tbody td {
+        padding: 8px 10px;
+    }
+
+    .extra-features {
+        justify-content: center;
+    }
+}
