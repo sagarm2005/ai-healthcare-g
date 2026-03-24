@@ -16,6 +16,20 @@ const Register = () => {
     const [dateOfBirth, setDateOfBirth] = useState(''); // For Patient
     const [gender, setGender] = useState(''); // For Patient
     const [age, setAge] = useState(''); // For Patient
+
+    // Calculate age automatically when dateOfBirth changes
+    useEffect(() => {
+        if (dateOfBirth) {
+            const birthDate = new Date(dateOfBirth);
+            const today = new Date();
+            let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                calculatedAge--;
+            }
+            setAge(calculatedAge.toString());
+        }
+    }, [dateOfBirth]);
     const [bloodGroup, setBloodGroup] = useState(''); // For Patient
     const [address, setAddress] = useState(''); // For Patient
 
@@ -228,6 +242,7 @@ const Register = () => {
                                         onChange={(e) => setAge(e.target.value)}
                                         required
                                         disabled={isRegistering}
+                                        readOnly
                                     />
                                 </div>
                                 <div className="form-group">

@@ -11,6 +11,7 @@ const PatientManagement = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        dateOfBirth: '',
         age: '',
         gender: '',
         mobileNumber: '',
@@ -32,7 +33,25 @@ const PatientManagement = () => {
     };
 
     const handleInputChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        if (name === 'dateOfBirth') {
+            const birthDate = new Date(value);
+            const today = new Date();
+            let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                calculatedAge--;
+            }
+            setFormData({
+                ...formData,
+                dateOfBirth: value,
+                age: calculatedAge >= 0 ? calculatedAge.toString() : ''
+            });
+            return;
+        }
+
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleUpdatePatient = async (e) => {
@@ -42,6 +61,7 @@ const PatientManagement = () => {
             await updatePatient(editingPatient._id, {
                 name: formData.name,
                 email: formData.email,
+                dateOfBirth: formData.dateOfBirth,
                 age: formData.age,
                 gender: formData.gender,
                 mobileNumber: formData.mobileNumber,
@@ -50,6 +70,7 @@ const PatientManagement = () => {
             setFormData({
                 name: '',
                 email: '',
+                dateOfBirth: '',
                 age: '',
                 gender: '',
                 mobileNumber: '',
@@ -78,7 +99,8 @@ const PatientManagement = () => {
         setEditingPatient(patient);
         setFormData({
             name: patient?.name ?? '',
-            email: patient?.userId?.email ?? '',
+            email: patient?.email ?? '',
+            dateOfBirth: patient?.dateOfBirth ? new Date(patient.dateOfBirth).toISOString().split('T')[0] : '',
             age: patient?.age ?? '',
             gender: patient?.gender ?? '',
             mobileNumber: patient?.mobileNumber ?? '',
@@ -129,6 +151,19 @@ const PatientManagement = () => {
                         />
                     </div>
                     <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="dateOfBirth">
+                            Date of Birth
+                        </label>
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            name="dateOfBirth"
+                            value={formData.dateOfBirth}
+                            onChange={handleInputChange}
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        />
+                    </div>
+                    <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="age">
                             Age
                         </label>
@@ -139,6 +174,7 @@ const PatientManagement = () => {
                             value={formData.age}
                             onChange={handleInputChange}
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            readOnly
                         />
                     </div>
                     <div className="mb-4">

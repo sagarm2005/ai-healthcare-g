@@ -50,12 +50,25 @@ patientSchema.methods.matchPassword = async function (enteredPassword) {
 };
 
 patientSchema.pre('save', async function (next) {
+    if (this.isModified('dateOfBirth') && this.dateOfBirth) {
+        const birthDate = new Date(this.dateOfBirth);
+        const today = new Date();
+        let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            calculatedAge--;
+        }
+        this.age = calculatedAge;
+    }
+
     if (!this.isModified('password')) {
         next();
+        return;
     }
 
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
+    next();
 });
 
 const Patient = mongoose.model('Patient', patientSchema);
