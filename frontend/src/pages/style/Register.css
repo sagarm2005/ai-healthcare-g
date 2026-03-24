@@ -34,8 +34,21 @@
   padding: 30px;
 }
 
-.form-group {
-  margin-bottom: 20px;
+.form-group.checkbox-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-group.checkbox-group input {
+  width: auto;
+  margin: 0;
+}
+
+.form-group.checkbox-group label {
+  margin-bottom: 0;
+  cursor: pointer;
 }
 
 .form-group label {
@@ -43,6 +56,17 @@
   margin-bottom: 8px;
   font-weight: 500;
   color: #333;
+}
+
+.form-group label a {
+  color: #4a6fc9;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-group label a:hover {
+  text-decoration: underline;
 }
 
 .form-control {

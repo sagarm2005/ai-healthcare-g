@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import LoginPage from './pages/Auth/Login.jsx';
 import RegisterPage from './pages/Auth/Register.jsx';
+import Terms from './pages/Auth/Terms.jsx';
 import DoctorDashboard from './pages/Doctor/DoctorDashboard.jsx';
 import PatientDashboard from './pages/Patient/PatientDashboard.jsx';
 import NotFound from './pages/NotFound.jsx';
@@ -61,6 +62,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/terms" element={<Terms />} />
 
             {/* Admin Routes */}
             <Route element={<ProtectedRoute allowedRoles={[ROLES.ADMIN]} />}>
