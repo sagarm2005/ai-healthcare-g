@@ -173,10 +173,17 @@ const getDashboardStats = asyncHandler(async (req, res) => {
     const totalPatients = await Patient.countDocuments({});
     const totalAppointments = await Appointment.countDocuments({});
 
+    const latestDoctor = await Doctor.findOne({}).sort({ createdAt: -1 }).select('name email createdAt');
+    const latestPatient = await Patient.findOne({}).sort({ createdAt: -1 }).select('name email createdAt');
+    const latestAdmin = await Admin.findOne({}).sort({ createdAt: -1 }).select('name email createdAt');
+
     res.json({
         totalDoctors,
         totalPatients,
         totalAppointments,
+        latestDoctor,
+        latestPatient,
+        latestAdmin,
     });
 });
 

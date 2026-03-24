@@ -17,7 +17,10 @@ import aiRoutes from './routes/aiRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
-dotenv.config();
+dotenv.config({ path: path.join(process.cwd(), 'backend', '.env') });
+if (!process.env.MONGO_URI) {
+    dotenv.config(); // Fallback if already in backend folder
+}
 connectDB();
 
 const __filename = fileURLToPath(import.meta.url);

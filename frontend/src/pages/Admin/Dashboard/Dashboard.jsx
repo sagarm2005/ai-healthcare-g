@@ -33,6 +33,44 @@ const AdminDashboard = () => {
     return (
         <div className="admin-dashboard-container">
             <h1>Admin Dashboard</h1>
+            
+            {/* Latest Registered Users Section */}
+            <div className="latest-registered-section">
+                <h2>Latest Registered</h2>
+                <div className="latest-cards-grid">
+                    <div className="latest-card patient">
+                        <h3>Latest Patient</h3>
+                        {stats?.latestPatient ? (
+                            <>
+                                <p><strong>Name:</strong> {stats.latestPatient.name}</p>
+                                <p><strong>Email:</strong> {stats.latestPatient.email}</p>
+                                <p><strong>Date:</strong> {new Date(stats.latestPatient.createdAt).toLocaleDateString()}</p>
+                            </>
+                        ) : <p>No patients registered yet.</p>}
+                    </div>
+                    <div className="latest-card doctor">
+                        <h3>Latest Doctor</h3>
+                        {stats?.latestDoctor ? (
+                            <>
+                                <p><strong>Name:</strong> {stats.latestDoctor.name}</p>
+                                <p><strong>Email:</strong> {stats.latestDoctor.email}</p>
+                                <p><strong>Date:</strong> {new Date(stats.latestDoctor.createdAt).toLocaleDateString()}</p>
+                            </>
+                        ) : <p>No doctors registered yet.</p>}
+                    </div>
+                    <div className="latest-card admin">
+                        <h3>Latest Admin</h3>
+                        {stats?.latestAdmin ? (
+                            <>
+                                <p><strong>Name:</strong> {stats.latestAdmin.name}</p>
+                                <p><strong>Email:</strong> {stats.latestAdmin.email}</p>
+                                <p><strong>Date:</strong> {new Date(stats.latestAdmin.createdAt).toLocaleDateString()}</p>
+                            </>
+                        ) : <p>No admins registered yet.</p>}
+                    </div>
+                </div>
+            </div>
+
             <div className="action-buttons" style={{ marginBottom: '1rem' }}>
                 <Link to="/admin/profile?edit=true" className="btn btn-indigo">Edit</Link>
                 <button type="button" className="btn btn-blue" onClick={() => navigate(-1)}>Back</button>

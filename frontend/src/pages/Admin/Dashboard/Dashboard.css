@@ -17,6 +17,57 @@
   border-bottom: 3px solid #6366f1;
 }
 
+/* Latest Registered Section */
+.latest-registered-section {
+  margin-bottom: 3rem;
+}
+
+.latest-registered-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1.5rem;
+}
+
+.latest-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.latest-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-top: 4px solid #cbd5e1;
+}
+
+.latest-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.latest-card p {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 0.5rem;
+}
+
+.latest-card.patient {
+  border-top-color: #3b82f6;
+}
+
+.latest-card.doctor {
+  border-top-color: #10b981;
+}
+
+.latest-card.admin {
+  border-top-color: #6366f1;
+}
+
 /* Dashboard Cards */
 .dashboard-cards-grid {
   display: grid;
