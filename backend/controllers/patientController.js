@@ -32,6 +32,7 @@ const getPatientProfile = asyncHandler(async (req, res) => {
             bloodGroup: patient.bloodGroup,
             address: patient.address,
             mobileNumber: patient.mobileNumber, // Assuming mobileNumber exists in Patient model
+            profileImage: patient.profileImage,
         });
     } else {
         res.status(404);
@@ -44,6 +45,7 @@ const getPatientProfile = asyncHandler(async (req, res) => {
 // @access  Private/Patient
 const updatePatientProfile = asyncHandler(async (req, res) => {
     const { name, email, password, dateOfBirth, gender, age, bloodGroup, address, mobileNumber } = req.body;
+    const profileImage = req.file ? `/uploads/${req.file.filename}` : undefined;
 
     const user = await User.findById(req.user._id);
 
@@ -63,6 +65,9 @@ const updatePatientProfile = asyncHandler(async (req, res) => {
             patient.age = age || patient.age;
             patient.bloodGroup = bloodGroup || patient.bloodGroup;
             patient.address = address || patient.address;
+            if (profileImage) {
+                patient.profileImage = profileImage;
+            }
 
             if (mobileNumber !== undefined) {
                 const sanitizedMobile = String(mobileNumber).replace(/\D/g, '');
@@ -85,6 +90,7 @@ const updatePatientProfile = asyncHandler(async (req, res) => {
                 bloodGroup: updatedPatient.bloodGroup,
                 address: updatedPatient.address,
                 mobileNumber: updatedPatient.mobileNumber,
+                profileImage: updatedPatient.profileImage,
             });
         } else {
             res.status(404);

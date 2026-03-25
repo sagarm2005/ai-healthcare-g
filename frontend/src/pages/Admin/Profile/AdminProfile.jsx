@@ -4,6 +4,7 @@ import LoadingSpinner from '../../../components/LoadingSpinner';
 import '../../style/AdminProfile.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { getUploadUrl } from '../../../utils/constants';
 
 const AdminProfile = () => {
     const [loading, setLoading] = useState(true);
@@ -14,7 +15,10 @@ const AdminProfile = () => {
         password: '',
         adminId: '',
         mobileNumber: '',
+        profileImage: '',
     });
+    const [profileImageFile, setProfileImageFile] = useState(null);
+    const [profileImagePreview, setProfileImagePreview] = useState('');
     const [message, setMessage] = useState(null);
     const [isEditing, setIsEditing] = useState(false); // New state for edit mode
     const location = useLocation();
@@ -39,6 +43,7 @@ const AdminProfile = () => {
                 adminId: data?.adminId ?? '',
                 mobileNumber: data?.mobileNumber ?? data?.contact ?? data?.phone ?? '',
                 password: '',
+                profileImage: data?.profileImage ?? '',
             });
         } catch (err) {
             setError(err.message);
@@ -68,7 +73,25 @@ const AdminProfile = () => {
         setError(null);
         setLoading(true);
         try {
-            await updateAdminProfile(formData);
+            const payload = new FormData();
+            payload.append('name', formData.name || '');
+            payload.append('email', formData.email || '');
+            payload.append('mobileNumber', formData.mobileNumber || '');
+            if (formData.password) {
+                payload.append('password', formData.password);
+            }
+            if (profileImageFile) {
+                payload.append('profileImage', profileImageFile);
+            }
+
+            const response = await updateAdminProfile(payload);
+            setFormData((prev) => ({
+                ...prev,
+                profileImage: response?.profileImage || prev.profileImage,
+                password: '',
+            }));
+            setProfileImageFile(null);
+            setProfileImagePreview('');
             setMessage('Successfully updated.');
             toast.success('Successfully updated.');
             setIsEditing(false); // Exit edit mode after saving
@@ -77,6 +100,22 @@ const AdminProfile = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleProfileImageChange = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) {
+            setProfileImageFile(null);
+            setProfileImagePreview('');
+            return;
+        }
+
+        setProfileImageFile(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setProfileImagePreview(reader.result?.toString() || '');
+        };
+        reader.readAsDataURL(file);
     };
 
     if (loading) {
@@ -89,6 +128,25 @@ const AdminProfile = () => {
             {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">Error: {error}</div>}
             {message && <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">{message}</div>}
             <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-md">
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Profile Image</label>
+                    <div className="flex items-center gap-4">
+                        <img
+                            src={profileImagePreview || getUploadUrl(formData.profileImage) || 'https://cdn-icons-png.flaticon.com/512/2206/2206368.png'}
+                            alt="Admin profile"
+                            className="w-24 h-24 rounded-full object-cover border border-gray-300"
+                        />
+                        <input
+                            type="file"
+                            id="profileImage"
+                            name="profileImage"
+                            accept="image/*"
+                            onChange={handleProfileImageChange}
+                            disabled={!isEditing}
+                            className={`${!isEditing ? 'opacity-60 cursor-not-allowed' : ''}`}
+                        />
+                    </div>
+                </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="adminId">
                         Admin ID
@@ -196,6 +254,8 @@ const AdminProfile = () => {
                                         setError(null);
                                         setMessage(null);
                                         setIsEditing(false);
+                                        setProfileImageFile(null);
+                                        setProfileImagePreview('');
                                         fetchAdminProfile();
                                     }}
                                     className="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

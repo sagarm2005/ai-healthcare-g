@@ -16,7 +16,7 @@ import {
 import { protect, doctor } from '../middleware/authMiddleware.js';
 import { upload } from '../middleware/uploadMiddleware.js';
 
-router.route('/profile').get(protect, doctor, getDoctorProfile).put(protect, doctor, updateDoctorProfile);
+router.route('/profile').get(protect, doctor, getDoctorProfile).put(protect, doctor, upload.single('profileImage'), updateDoctorProfile);
 router.route('/profile/upload').post(protect, doctor, upload.single('profileImage'), uploadProfileImage);
 router.route('/patients').get(protect, doctor, getAssignedPatients);
 router.route('/patients/:patientId/medicalrecords').post(protect, doctor, updatePatientMedicalRecord);

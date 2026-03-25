@@ -40,6 +40,10 @@ const patientSchema = mongoose.Schema({
     mobileNumber: {
         type: String,
     },
+    profileImage: {
+        type: String,
+        default: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Generic patient icon
+    },
     // Add other patient specific fields
 }, {
     timestamps: true,

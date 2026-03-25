@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import moment from 'moment';
 import { toast } from 'react-toastify';
+import { getUploadUrl } from '../../utils/constants';
 
 const MOBILE_REGEX = /^\d{10}$/;
 
@@ -19,8 +20,11 @@ const EditPatientProfile = () => {
         dateOfBirth: '',
         age: '',
         bloodGroup: '',
-        address: ''
+        address: '',
+        profileImage: '',
     });
+    const [profileImageFile, setProfileImageFile] = useState(null);
+    const [profileImagePreview, setProfileImagePreview] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -44,7 +48,8 @@ const EditPatientProfile = () => {
                     dateOfBirth: data.dateOfBirth ? moment(data.dateOfBirth).format('YYYY-MM-DD') : '',
                     age: data.age || '',
                     bloodGroup: data.bloodGroup || '',
-                    address: data.address || ''
+                    address: data.address || '',
+                    profileImage: data.profileImage || '',
                 });
             } catch (err) {
                 setError('Failed to fetch patient profile.');
@@ -94,6 +99,26 @@ const EditPatientProfile = () => {
 
     const handleEditToggle = () => {
         setIsEditing((prev) => !prev);
+        if (isEditing) {
+            setProfileImageFile(null);
+            setProfileImagePreview('');
+        }
+    };
+
+    const handleProfileImageChange = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) {
+            setProfileImageFile(null);
+            setProfileImagePreview('');
+            return;
+        }
+
+        setProfileImageFile(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setProfileImagePreview(reader.result?.toString() || '');
+        };
+        reader.readAsDataURL(file);
     };
 
     const handleUpdate = async () => {
@@ -107,7 +132,29 @@ const EditPatientProfile = () => {
         }
 
         try {
-            await api.put('/patient/profile', patient);
+            const formData = new FormData();
+            formData.append('name', patient.name || '');
+            formData.append('mobileNumber', patient.mobileNumber || '');
+            formData.append('email', patient.email || '');
+            formData.append('gender', patient.gender || '');
+            formData.append('dateOfBirth', patient.dateOfBirth || '');
+            formData.append('age', patient.age || '');
+            formData.append('bloodGroup', patient.bloodGroup || '');
+            formData.append('address', patient.address || '');
+            if (profileImageFile) {
+                formData.append('profileImage', profileImageFile);
+            }
+
+            const response = await api.put('/patient/profile', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+            const data = response.data || {};
+            setPatient((prev) => ({
+                ...prev,
+                profileImage: data.profileImage || prev.profileImage,
+            }));
+            setProfileImageFile(null);
+            setProfileImagePreview('');
             toast.success('Profile updated successfully!');
             setIsEditing(false);
         } catch (err) {
@@ -128,6 +175,30 @@ const EditPatientProfile = () => {
         <div className="edit-patient-profile">
             <h1>Patient Profile</h1>
             <form className="profile-form" onSubmit={(e) => e.preventDefault()}>
+                <div className="form-group">
+                    <label>Profile Image:</label>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <img
+                            src={profileImagePreview || getUploadUrl(patient.profileImage) || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'}
+                            alt="Patient profile"
+                            style={{
+                                width: '90px',
+                                height: '90px',
+                                borderRadius: '50%',
+                                objectFit: 'cover',
+                                border: '2px solid #e5e7eb',
+                            }}
+                        />
+                        <input
+                            type="file"
+                            id="profileImage"
+                            name="profileImage"
+                            accept="image/*"
+                            onChange={handleProfileImageChange}
+                            disabled={!isEditing}
+                        />
+                    </div>
+                </div>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input

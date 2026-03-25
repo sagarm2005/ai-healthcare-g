@@ -20,6 +20,7 @@ import {
     deleteAdminNotification,
 } from '../controllers/adminController.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
+import { upload } from '../middleware/uploadMiddleware.js';
 
 router.route('/doctors').get(protect, admin, getAllDoctors).post(protect, admin, createDoctor);
 router.route('/doctors/:id').put(protect, admin, updateDoctor).delete(protect, admin, deleteDoctor);
@@ -30,7 +31,7 @@ router.route('/appointments').get(protect, admin, getAllAppointments);
 router.route('/appointments/:id/status').put(protect, admin, updateAppointmentStatus);
 router.route('/aireports').get(protect, admin, getAllAIReports);
 router.route('/stats').get(protect, admin, getDashboardStats);
-router.route('/profile').get(protect, admin, getAdminProfile).put(protect, admin, updateAdminProfile);
+router.route('/profile').get(protect, admin, getAdminProfile).put(protect, admin, upload.single('profileImage'), updateAdminProfile);
 
 // Notification routes
 router.route('/notifications').get(protect, admin, getAdminNotifications);

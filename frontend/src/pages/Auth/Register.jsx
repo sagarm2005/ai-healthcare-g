@@ -43,6 +43,8 @@ const Register = () => {
     // Admin fields
     const [adminId, setAdminId] = useState('');
 
+    const [imagePreview, setImagePreview] = useState('');
+    const [profileImageFile, setProfileImageFile] = useState(null);
 
 
     // Common fields
@@ -65,6 +67,22 @@ const Register = () => {
             }
         }
     }, [user, navigate]);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) {
+            setProfileImageFile(null);
+            setImagePreview('');
+            return;
+        }
+
+        setProfileImageFile(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setImagePreview(reader.result?.toString() || '');
+        };
+        reader.readAsDataURL(file);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -104,7 +122,17 @@ const Register = () => {
                 }
                 userData.adminId = adminId;
             }
-            await register(userData);
+            let registrationPayload = userData;
+            if (profileImageFile) {
+                const formData = new FormData();
+                Object.entries(userData).forEach(([key, value]) => {
+                    formData.append(key, value);
+                });
+                formData.append('profileImage', profileImageFile);
+                registrationPayload = formData;
+            }
+
+            await register(registrationPayload);
             toast.success('Registration successful!');
             // Redirection handled by useEffect
         } catch (error) {
@@ -200,6 +228,51 @@ const Register = () => {
                                 <option value={ROLES.Doctor}>Doctor</option>
                                 <option value={ROLES.Admin}>Admin</option>
                             </select>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="profileImage">Profile Image Upload</label>
+                            <input
+                                type="file"
+                                id="profileImage"
+                                style={{ display: 'none' }}
+                                onChange={handleImageChange}
+                                accept="image/*"
+                                disabled={isRegistering}
+                            />
+                            <label
+                                htmlFor="profileImage"
+                                style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '8px',
+                                    cursor: isRegistering ? 'not-allowed' : 'pointer',
+                                    padding: '10px 14px',
+                                    border: '1px solid #d1d5db',
+                                    borderRadius: '10px',
+                                    background: '#f8fafc',
+                                    color: '#1f2937',
+                                    opacity: isRegistering ? 0.6 : 1,
+                                }}
+                            >
+                                <span aria-hidden="true">&#128247;</span>
+                                <span>{profileImageFile ? 'Change Image' : 'Choose Image'}</span>
+                            </label>
+                            {imagePreview && (
+                                <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                                    <img 
+                                        src={imagePreview} 
+                                        alt="Preview" 
+                                        style={{ 
+                                            width: '100px', 
+                                            height: '100px', 
+                                            borderRadius: '50%', 
+                                            objectFit: 'cover',
+                                            border: '2px solid #ddd'
+                                        }} 
+                                    />
+                                </div>
+                            )}
                         </div>
 
                         {role === ROLES.Patient && (

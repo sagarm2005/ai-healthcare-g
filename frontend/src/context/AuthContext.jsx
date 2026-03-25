@@ -42,8 +42,15 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (userData) => {
-        // userData should include role (Admin, Doctor, Patient)
-        if (!userData.role) {
+        // userData can be a plain object or FormData
+        let role;
+        if (userData instanceof FormData) {
+            role = userData.get('role');
+        } else {
+            role = userData.role;
+        }
+
+        if (!role) {
             throw new Error('Role is required for registration');
         }
 

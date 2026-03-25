@@ -35,6 +35,7 @@ const getDoctorProfile = asyncHandler(async (req, res) => {
 // @access  Private/Doctor
 const updateDoctorProfile = asyncHandler(async (req, res) => {
     const doctor = await Doctor.findOne({ userId: req.user._id });
+    const profileImage = req.file ? `/uploads/${req.file.filename}` : undefined;
 
     if (doctor) {
         doctor.name = req.body.name || doctor.name;
@@ -43,7 +44,7 @@ const updateDoctorProfile = asyncHandler(async (req, res) => {
         doctor.qualification = req.body.qualification || doctor.qualification;
         doctor.yearsOfExperience = req.body.yearsOfExperience || doctor.yearsOfExperience;
         doctor.hospitalName = req.body.hospitalName || doctor.hospitalName;
-        doctor.profileImage = req.body.profileImage || doctor.profileImage;
+        doctor.profileImage = profileImage || req.body.profileImage || doctor.profileImage;
 
         const updatedDoctor = await doctor.save();
 

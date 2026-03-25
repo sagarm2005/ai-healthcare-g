@@ -83,6 +83,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const normalizedEmail = email ? email.toLowerCase().trim() : '';
 
+    const profileImage = req.file ? `/uploads/${req.file.filename}` : undefined;
+
     const sanitizedMobile = mobileNumber === undefined || mobileNumber === null || mobileNumber === ''
         ? ''
         : String(mobileNumber).replace(/\D/g, '');
@@ -163,6 +165,7 @@ const registerUser = asyncHandler(async (req, res) => {
                 password,
                 adminId,
                 mobileNumber: sanitizedMobile,
+                profileImage,
             });
         } else if (role === 'Doctor') {
             const profileId = new mongoose.Types.ObjectId();
@@ -188,6 +191,7 @@ const registerUser = asyncHandler(async (req, res) => {
                 qualification,
                 yearsOfExperience: normalizedExperience,
                 hospitalName,
+                profileImage,
             });
         } else if (role === 'Patient') {
             const profileId = new mongoose.Types.ObjectId();
@@ -208,6 +212,7 @@ const registerUser = asyncHandler(async (req, res) => {
                 bloodGroup,
                 address,
                 mobileNumber: sanitizedMobile,
+                profileImage,
             });
         } else {
             res.status(400);

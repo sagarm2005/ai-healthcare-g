@@ -342,6 +342,7 @@ const getAdminProfile = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const updateAdminProfile = asyncHandler(async (req, res) => {
     const admin = await Admin.findById(req.user.profileId);
+    const profileImage = req.file ? `/uploads/${req.file.filename}` : undefined;
 
     if (admin) {
         const user = await User.findById(req.user._id);
@@ -354,6 +355,9 @@ const updateAdminProfile = asyncHandler(async (req, res) => {
 
         admin.name = req.body.name || admin.name;
         admin.mobileNumber = req.body.mobileNumber || admin.mobileNumber;
+        if (profileImage) {
+            admin.profileImage = profileImage;
+        }
         const updatedAdmin = await admin.save();
         res.json(updatedAdmin);
     } else {

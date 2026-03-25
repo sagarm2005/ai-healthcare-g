@@ -4,6 +4,7 @@ import '../style/DoctorDashboard.css'; // Reusing some dashboard styles or I wil
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { getUploadUrl } from '../../utils/constants';
 
 const DoctorProfile = () => {
     const { user } = useAuth();
@@ -19,6 +20,8 @@ const DoctorProfile = () => {
         email: ''
     });
     const [isEditing, setIsEditing] = useState(false);
+    const [profileImageFile, setProfileImageFile] = useState(null);
+    const [profileImagePreview, setProfileImagePreview] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -65,11 +68,51 @@ const DoctorProfile = () => {
 
     const handleEditToggle = () => {
         setIsEditing((prev) => !prev);
+        if (isEditing) {
+            setProfileImageFile(null);
+            setProfileImagePreview('');
+        }
+    };
+
+    const handleProfileImageChange = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) {
+            setProfileImageFile(null);
+            setProfileImagePreview('');
+            return;
+        }
+
+        setProfileImageFile(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setProfileImagePreview(reader.result?.toString() || '');
+        };
+        reader.readAsDataURL(file);
     };
 
     const handleUpdate = async () => {
         try {
-            await api.put('/doctor/profile', doctor);
+            const formData = new FormData();
+            formData.append('name', doctor.name || '');
+            formData.append('medicalRegistrationNumber', doctor.medicalRegistrationNumber || '');
+            formData.append('specialization', doctor.specialization || '');
+            formData.append('qualification', doctor.qualification || '');
+            formData.append('yearsOfExperience', doctor.yearsOfExperience || '');
+            formData.append('hospitalName', doctor.hospitalName || '');
+            if (profileImageFile) {
+                formData.append('profileImage', profileImageFile);
+            }
+
+            const response = await api.put('/doctor/profile', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+            const data = response.data || {};
+            setDoctor((prev) => ({
+                ...prev,
+                profileImage: data.profileImage || prev.profileImage,
+            }));
+            setProfileImageFile(null);
+            setProfileImagePreview('');
             toast.success('Profile updated successfully!');
             setIsEditing(false);
         } catch (err) {
@@ -91,6 +134,25 @@ const DoctorProfile = () => {
             <h1 className="text-2xl font-bold mb-4">Doctor Profile</h1>
             <form className="bg-white p-6 rounded-lg shadow-md" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="mb-4 md:col-span-2">
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Profile Image:</label>
+                        <div className="flex items-center gap-4">
+                            <img
+                                src={profileImagePreview || getUploadUrl(doctor.profileImage) || 'https://cdn-icons-png.flaticon.com/512/3774/3774299.png'}
+                                alt="Doctor profile"
+                                className="w-24 h-24 rounded-full object-cover border border-gray-300"
+                            />
+                            <input
+                                type="file"
+                                id="profileImage"
+                                name="profileImage"
+                                accept="image/*"
+                                onChange={handleProfileImageChange}
+                                disabled={!isEditing}
+                                className={`${!isEditing ? 'opacity-60 cursor-not-allowed' : ''}`}
+                            />
+                        </div>
+                    </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Name:</label>
                         <input
@@ -164,18 +226,6 @@ const DoctorProfile = () => {
                             value={doctor.hospitalName}
                             onChange={handleChange}
                             disabled={!isEditing}
-                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${!isEditing ? 'bg-gray-100' : ''}`}
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Profile Image URL:</label>
-                        <input
-                            type="text"
-                            name="profileImage"
-                            value={doctor.profileImage}
-                            onChange={handleChange}
-                            disabled={!isEditing}
-                            placeholder="Enter image URL"
                             className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${!isEditing ? 'bg-gray-100' : ''}`}
                         />
                     </div>

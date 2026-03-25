@@ -20,7 +20,7 @@ import {
 import { protect, patient } from '../middleware/authMiddleware.js';
 import { upload } from '../middleware/uploadMiddleware.js'; // Import upload middleware
 
-router.route('/profile').get(protect, patient, getPatientProfile).put(protect, patient, updatePatientProfile);
+router.route('/profile').get(protect, patient, getPatientProfile).put(protect, patient, upload.single('profileImage'), updatePatientProfile);
 router.route('/medical-records')
     .get(protect, patient, getMyMedicalRecords); // New route for medical records
 router.route('/medical-records/:id')

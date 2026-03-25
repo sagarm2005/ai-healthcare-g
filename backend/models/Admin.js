@@ -29,6 +29,10 @@ const adminSchema = mongoose.Schema({
     mobileNumber: {
         type: String,
     },
+    profileImage: {
+        type: String,
+        default: 'https://cdn-icons-png.flaticon.com/512/2206/2206368.png', // Generic admin icon
+    },
     // Add any Admin specific fields here
 }, {
     timestamps: true,
