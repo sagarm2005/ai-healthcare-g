@@ -49,7 +49,7 @@ patientSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
-patientSchema.pre('save', async function (next) {
+patientSchema.pre('save', async function () {
     if (this.isModified('dateOfBirth') && this.dateOfBirth) {
         const birthDate = new Date(this.dateOfBirth);
         const today = new Date();
@@ -62,13 +62,11 @@ patientSchema.pre('save', async function (next) {
     }
 
     if (!this.isModified('password')) {
-        next();
         return;
     }
 
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-    next();
 });
 
 const Patient = mongoose.model('Patient', patientSchema);

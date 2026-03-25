@@ -52,7 +52,7 @@ app.use('/api/messages', messageRoutes);
 app.get('/api/doctors', getAllApprovedDoctors);
 
 app.use(notFound);
-app.use(errorHandler);
+app.use((err, req, res, next) => errorHandler(err, req, res, next));
 
 const PORT = process.env.PORT || 5000;
 
