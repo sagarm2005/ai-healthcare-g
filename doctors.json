@@ -1,0 +1,1 @@
+{"_id":{"$oid":"69920d919e94c8351bd1e29f"},"userId":{"$oid":"69920d919e94c8351bd1e2a1"},"name":"abhi_Doctor","medicalRegistrationNumber":"2005","qualification":"MBBS","yearsOfExperience":1,"hospitalName":"abcd","isApproved":true,"createdAt":{"$date":"2026-02-15T18:16:49.472Z"},"updatedAt":{"$date":"2026-02-16T16:59:08.484Z"},"__v":0}
